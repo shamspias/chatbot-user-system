@@ -366,11 +366,12 @@ BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379')
 
 # Celery schedule settings
-
+TEXT_REST_TIME = os.getenv('TEXT_REST_TIME', 24)
+TEXT_REST_TIME_PARM = os.getenv('TEXT_REST_TIME_PARM', 'hours')
 CELERY_BEAT_SCHEDULE = {
     'reset_text_count_every_24_hours': {
-        'task': 'your_app_name.tasks.reset_text_count',
-        'schedule': timedelta(hours=24),
+        'task': 'common.tasks.reset_text_count',
+        'schedule': timedelta(TEXT_REST_TIME_PARM=TEXT_REST_TIME),
     },
 }
 
