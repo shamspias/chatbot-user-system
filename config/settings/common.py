@@ -365,6 +365,15 @@ AWS celery configuration
 BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379')
 
+# Celery schedule settings
+
+CELERY_BEAT_SCHEDULE = {
+    'reset_text_count_every_24_hours': {
+        'task': 'your_app_name.tasks.reset_text_count',
+        'schedule': timedelta(hours=24),
+    },
+}
+
 # Admin Site Config
 ADMIN_SITE_HEADER = os.getenv('ADMIN_SITE_HEADER')
 ADMIN_SITE_TITLE = os.getenv('ADMIN_SITE_TITLE')
