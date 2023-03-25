@@ -371,7 +371,7 @@ TEXT_REST_TIME_PARM = os.getenv('TEXT_REST_TIME_PARM', 'hours')
 CELERY_BEAT_SCHEDULE = {
     'reset_text_count_every_24_hours': {
         'task': 'common.tasks.reset_text_count',
-        'schedule': timedelta(TEXT_REST_TIME_PARM=TEXT_REST_TIME),
+        'schedule': timedelta(hours=TEXT_REST_TIME),
     },
 }
 
