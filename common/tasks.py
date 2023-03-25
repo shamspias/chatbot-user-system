@@ -17,4 +17,4 @@ def send_email_task(subject, to, default_from, email_html_message):
 
 @shared_task
 def reset_text_count():
-    NoneExistNumbers.objects.update(text_count=0)
+    NoneExistNumbers.objects.update(text_count=1)
