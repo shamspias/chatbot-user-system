@@ -167,8 +167,10 @@ class UpdateTrackConversationHistory(views.APIView):
         bot_replay = request.data.get('bot_replay')
 
         phone_obj = NoneExistNumbers.objects.get(number=number)
-
-        conversation_obj = ConversationHistory.objects.get(phone_number=phone_obj, conversation_id=conversation_id)
-        conversation_obj.chatbot_response = bot_replay
-        conversation_obj.save()
-        return Response({"message": "success"}, status=status.HTTP_200_OK)
+        if phone_obj:
+            conversation_obj = ConversationHistory.objects.get(phone_number=phone_obj, conversation_id=conversation_id)
+            conversation_obj.chatbot_response = bot_replay
+            conversation_obj.save()
+            return Response({"message": "success"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "number not found"}, status=status.HTTP_400_BAD_REQUEST)
