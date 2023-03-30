@@ -111,7 +111,6 @@ class TrackConversationHistory(views.APIView):
         number_obj, created = NoneExistNumbers.objects.get_or_create(number=number)
         if created:
             number_obj.is_user = True
-            number_obj.text_count += 1
             number_obj.save()
         user_input = request.data.get('user_input')
         end_param = request.data.get('end_param', 'bot')
