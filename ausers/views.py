@@ -79,7 +79,11 @@ class DeleteConversationalHistoryApiView(views.APIView):
         }
         """
         phone_number = request.data.get('number')
-        none_exist_number_obj = NoneExistNumbers.objects.get(number=phone_number)
+        none_exist_number_obj, created = NoneExistNumbers.objects.get_or_create(number=phone_number)
+        if created:
+            none_exist_number_obj.is_user = True
+            none_exist_number_obj.text_count += 1
+            none_exist_number_obj.save()
         ConversationHistory.objects.filter(phone_number=none_exist_number_obj).delete()
         return Response({"message": "Deleted"}, status=status.HTTP_200_OK)
 
