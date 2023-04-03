@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = [
     'corsheaders',  # Cross Origin
     'easy_thumbnails',  # image lib
     'rest_framework.authtoken',  # Token authentication
+    'import_export'  # import export excel from django admin
     # 'oauth2_provider',
     # 'social_django',  # django social auth
     # 'drf_social_oauth2',  # this package
