@@ -17,3 +17,4 @@ boto3
 celery
 channels
 stripe
+django-import-export
